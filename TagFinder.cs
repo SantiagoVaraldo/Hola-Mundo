@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-using System.Net;
 using System.Collections;
 
 namespace ExerciseOne
@@ -42,7 +39,7 @@ namespace ExerciseOne
             }
             return tagsAndAtributes;
         }
-        public ArrayList FindAtributos(string content)
+        public ArrayList FindAtributes(string content)
         {
              //Separa el archivo por lineas
             string[] contentList = content.Split(new [] { '\r', '\n' }); 
@@ -54,26 +51,26 @@ namespace ExerciseOne
             //recorre lineas
             foreach (string linea in contentList){ 
                 string tag = "";
-                bool found = false;
-                bool FoundAtributo = false;        //indica si se encontro una tag
+                bool found = false;               //indica si se encontro una tag
+                bool FoundAtribute = false;        //indica si se encontro un atributo
                     
                 foreach (char caracter in linea) {  //se fija caracter por caracter de content
 
                 
-                    if (caracter.Equals(fin) || found && caracter.Equals(barra)){ //Si es un tag terminando, un espacio, o el siguiente caracter despeus de un < es un /, pone found false, y continua a la siguiente linea.
+                    if (caracter.Equals(fin) || found && caracter.Equals(barra)){ //Si es un tag terminando, o el siguiente caracter despeus de un < es un /, pone found false, y continua a la siguiente linea.
                         found = false;
                         //continue;
                     }
-                    if (caracter.Equals(fin) || caracter.Equals(barra) || (FoundAtributo && caracter.Equals(espacio))){ //Si es un tag terminando, un espacio, o el siguiente caracter despeus de un < es un /, pone found false, y continua a la siguiente linea.
-                        if (FoundAtributo && caracter.Equals(espacio))
+                    if (caracter.Equals(fin) || caracter.Equals(barra) || (FoundAtribute && caracter.Equals(espacio))){ //Si es un tag terminando, una barra, o si FoundAtributes es True y se encontro otro espacio 
+                        if (FoundAtribute && caracter.Equals(espacio))
                         {
-                            tag+= "\n";
+                            tag+= "\n";        // separa los atributos que esten en una misma linea
                         }
-                        FoundAtributo = false;
+                        FoundAtribute = false;
                         //continue;
                     }
                     
-                    if (found && FoundAtributo && caracter!= '"'){ //si se encontro un <, escribe los caracteres al string tag.
+                    if (found && FoundAtribute && caracter!= '"'){ //si se encontro un <, un " " y caracter no es un espacio, escribe los caracteres al string tag.
                         tag += caracter;
                     }
 
@@ -81,9 +78,9 @@ namespace ExerciseOne
                         
                         found = true;
                     }
-                    if (caracter.Equals(espacio)&&found)
+                    if (caracter.Equals(espacio)&&found) // si se abrio el tag con < y se encontro un atributo
                     {
-                        FoundAtributo = true;
+                        FoundAtribute = true;
                     }
                 }
                 tagsAndAtributes.Add(tag);

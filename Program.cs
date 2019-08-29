@@ -28,10 +28,9 @@ namespace ExerciseOne
 			TagFinder objeto = new TagFinder();
 			// agregamos a una lista los tags y los atributos, para eso llamamos a ambos metodos 
 			var lista = objeto.findTags(content);
-			var lista1 = objeto.FindAtributos(content);
+			var lista1 = objeto.FindAtributes(content);
 			// utilizando la clase ImprimirEtiquetas que tiene un solo metodo de clase imprimimos la lista
-			ImprimirEtiquetas.Imprimir(lista1);
-			//EncontrarEtiquetas.Tags(lista1);
+		 	PrintTags.Print(lista1);
 /*
 			Console.WriteLine("Antes de foreach");
 			//Mostrar contenido aca

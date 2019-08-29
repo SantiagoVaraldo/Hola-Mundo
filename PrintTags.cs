@@ -1,14 +1,12 @@
 using System;
-using System.IO;
-using System.Net;
 using System.Collections;
 
 namespace ExerciseOne
 {
-         public class ImprimirEtiquetas
+         public class PrintTags
          {
-                  // metodo de clase (static), imprime una lista
-                  public static void Imprimir(ArrayList lista)
+                  // metodo de clase (static), imprime una lista de tags 
+                  public static void Print(ArrayList lista)
                   {
                            foreach(string linea in lista)
                            {
